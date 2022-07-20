@@ -1,12 +1,15 @@
-import React from 'react'
+import React from 'react';
+import './styles.css';
+import CartItems from './cartItems'
 
-const Cart = () => { 
+const Cart = (props) => {
     return(
-        <aside className='container-sm'>
-            <p>
-                Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, 
-                international pavilions, award-winning fireworks and seasonal special events 
-            </p>
+        <aside className='container-sm customCart'>
+            <h1 className='mt-3'>Cart</h1>
+            <h5>
+                Here are your items, would you like to continue? 
+            </h5>
+            <CartItems  books={props.books}/>
         </aside>
     )
 }

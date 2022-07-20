@@ -1,12 +1,19 @@
 import BooksCatalog from './views/booksCatalog';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/navBar';
+import { useState } from 'react';
 
-function App() {
+const App = () => {
+
+  const [isOpenCart, setIsOpenCart] = useState(false);
+  const openCart = (isOpen) => {
+    setIsOpenCart(isOpen)
+  }
+
   return (
       <header>
-        <NavBar/>
-        <BooksCatalog />
+        <NavBar openCart={openCart}/>
+        <BooksCatalog opened={isOpenCart}/>
       </header>
   );
 }

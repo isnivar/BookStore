@@ -2,17 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { getBooks } from '../requests/request';
 import { TbPlus } from "react-icons/tb";
 
-const Books = () => { 
+const Books = (props) => {
+    
+    const {getNewBooks} = props;
     const [books, setBooks] = useState([{}]);
 
     useEffect(() => {
         getBooks().then((books)=>{
             setTimeout(() => {
                 setBooks([...books])
-            }, 3000)
-        })
-    }, [books])
+            }, 3000);
+        });
+    }, [])
     
+    const handleClickAdding = (id) => {
+        let book = books.filter( book => book.number === id);
+        let leftBooks = books.filter(book => book.number !== id);
+        setBooks([...leftBooks]);
+        getNewBooks(book[0]);
+    }
     
     return(
         <>
@@ -24,7 +32,11 @@ const Books = () => {
                             <td>{book.name}</td>
                             <td>{book.autor}</td>
                             <td>${book.cost}</td>
-                            <td><button className="btn btn-sm"><TbPlus/></button></td>
+                            <td>
+                                <button className="btn btn-sm" onClick={() => handleClickAdding(book.number)}>
+                                    <TbPlus/>
+                                </button>
+                            </td>
                         </tr>
                     )
                 })

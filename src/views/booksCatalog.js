@@ -2,8 +2,17 @@ import { useState } from 'react';
 import Books from '../components/books'
 import Cart from '../components/cart'
 
-const BooksCatalog = () => {
-    const [cart, setCart] = useState(false)
+const BooksCatalog = (props) => {
+    const [newBooks, setNewBooks] = useState([])
+
+    const getNewBooks = (booksList) => {
+        if(newBooks.length > 0){
+            setNewBooks([...newBooks, booksList]);
+        }else{
+            setNewBooks([booksList]);
+        }
+    }
+
     return (
         <section style={{display: 'flex'}}>
             <div className="container-md mt-4">
@@ -17,13 +26,13 @@ const BooksCatalog = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <Books/>
+                        <Books getNewBooks={getNewBooks}/>
                     </tbody>
                 </table>
 
             </div>
             {
-                cart && <Cart/>
+                props.opened && <Cart books={newBooks}/>
             }
         </section>
     );
