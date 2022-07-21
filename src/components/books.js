@@ -4,7 +4,7 @@ import { TbPlus } from "react-icons/tb";
 
 const Books = (props) => {
     
-    const {getNewBooks} = props;
+    const {getNewBooks, availableBooks} = props;
     const [books, setBooks] = useState([{}]);
 
     useEffect(() => {
@@ -14,12 +14,17 @@ const Books = (props) => {
             }, 3000);
         });
     }, [])
+
+    useEffect(() => {
+        setBooks([...books, availableBooks])
+    }, [availableBooks])
     
+    console.log(availableBooks)
     const handleClickAdding = (id) => {
         let book = books.filter( book => book.number === id);
         let leftBooks = books.filter(book => book.number !== id);
-        setBooks([...leftBooks]);
         getNewBooks(book[0]);
+        setBooks([...leftBooks]);
     }
     
     return(
