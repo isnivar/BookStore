@@ -17,6 +17,7 @@ const Cart = (props) => {
             <h5>
                 Here are your items, would you like to continue? 
             </h5>
+            <hr/>
             <CartItems  books={props.books} removeBook={getRemovedBook}/>
         </aside>
     )

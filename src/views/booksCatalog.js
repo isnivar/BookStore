@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Books from '../components/books'
 import Cart from '../components/cart'
 
@@ -9,6 +9,11 @@ const BooksCatalog = (props) => {
         book: {}
     })
 
+    useEffect(() => {
+      props.getSize(newBooks.length)
+    }, [newBooks])
+    
+    
     const getNewBooks = (booksList) => {
         if(newBooks.length > 0){
             setNewBooks([...newBooks, booksList]);

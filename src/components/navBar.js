@@ -20,11 +20,8 @@ const NavBar = (props) => {
                     <TbBook2 />
                     Book Store
                 </a>
-
-                <div className='d-flex' style={{width: '3rem'}}>
-                    {/* <button className='customBtn' onClick={handleClick}>
-                        <TbShoppingCart style={{color: 'white'}} size= '1.5em'/>
-                    </button> */}
+                <div className='d-flex me-4' style={{width: '3rem'}}>
+                    <div className='me-2' style={{color: 'white', fontSize: '1.em'}}>{props.size}</div>
                     <button className='customBtn' onClick={() => setOpenCard(!openCard)}>
                         <TbShoppingCart style={{color: 'white'}} size= '1.5em'/>
                     </button>
