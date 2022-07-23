@@ -4,13 +4,30 @@ import Cart from '../components/cart'
 
 const BooksCatalog = (props) => {
     const [newBooks, setNewBooks] = useState([])
-    const [removedBook, setRemovedBook] = useState({})
+    const [removedBook, setRemovedBook] = useState({
+        isSameBook: false,
+        book: {}
+    })
 
     const getNewBooks = (booksList) => {
         if(newBooks.length > 0){
             setNewBooks([...newBooks, booksList]);
         }else{
             setNewBooks([booksList]);
+        }
+    }
+
+    const deleteBook = (book) => {
+        if(removedBook.book === book){
+            setRemovedBook({
+                isSameBook: true,
+                book: book
+            })
+        }else{
+            setRemovedBook({
+                isSameBook: false,
+                book:book
+            });
         }
     }
 
@@ -34,7 +51,7 @@ const BooksCatalog = (props) => {
 
             </div>
             {
-                props.opened && <Cart books={newBooks} removeBook={setRemovedBook} updateList={setNewBooks}/>
+                props.opened && <Cart books={newBooks} removeBook={deleteBook} updateList={setNewBooks}/>
             }
         </section>
     );

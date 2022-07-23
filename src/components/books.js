@@ -16,10 +16,9 @@ const Books = (props) => {
     }, [])
 
     useEffect(() => {
-        setBooks([...books, availableBooks])
+        setBooks([...books, availableBooks.book])
     }, [availableBooks])
     
-    console.log(availableBooks)
     const handleClickAdding = (id) => {
         let book = books.filter( book => book.number === id);
         let leftBooks = books.filter(book => book.number !== id);
@@ -36,7 +35,7 @@ const Books = (props) => {
                             <th scope="row">{book.number}</th>
                             <td>{book.name}</td>
                             <td>{book.autor}</td>
-                            <td>${book.cost}</td>
+                            <td>{book.cost}</td>
                             <td>
                                 <button className="btn btn-sm" onClick={() => handleClickAdding(book.number)}>
                                     <TbPlus/>
