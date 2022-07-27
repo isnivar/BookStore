@@ -17,8 +17,6 @@ const CartItems = (props) => {
                                 <div>{book.autor}</div>
                                 <div>
                                     <button onClick={() => handlRemoveBook(book.number)}>X</button>
-                                    {/* <button onClick={() => removeBook(book.number)}>X</button> */}
-                                    {/* <button>X</button> */}
                                 </div>
                             </div>
                             <div className="card-body">
